@@ -2,22 +2,17 @@
   <div class="col-lg-4 col-md-6 mt-5">
     <div class="card">
       <div class="card-header">
-        <h3>Inscription</h3>
+        <h3>Connexion</h3>
       </div>
       <div class="card-body">
+        <%= render 'sessions/errors' if params[:invalid_session_params] %>
 
-        <%= form_with(model: @user) do |f| %>
-          <%= f.label 'Pseudo', class: 'mt-2' %>
-          <%= f.text_field :name, class: 'form-control mt-1', required: :required  %>
-
+        <%= form_for(:session, url: sessions_path) do |f| %>
           <%= f.label 'Adresse email', class: 'mt-2' %>
           <%= f.email_field :email, class: 'form-control mt-1', required: :required %>
 
           <%= f.label 'Mot de passe', class: 'mt-2' %>
           <%= f.password_field :password, class: 'form-control mt-1', required: :required, minlength: 6 %>
-
-          <%= f.label 'Mot de passe de confirmation', class: 'mt-2' %>
-          <%= f.password_field :password_confirmation, class: 'form-control mt-1', required: :required, minlength: 6 %>
 
           <%= f.submit 'Valider', class: 'btn btn-primary mt-4' %>
         <% end %>

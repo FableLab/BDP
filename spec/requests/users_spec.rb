@@ -12,10 +12,13 @@ RSpec.describe 'User', type: :request do
   describe 'CREATE /users/new' do
 
     it 'create user' do
+      password = Faker::Internet.password
+
       expect {
         post users_path, params: { user: { email: Faker::Internet.email,
                                            name: Faker::Name.first_name,
-                                           password: Faker::Internet.password }
+                                           password: password,
+                                           password_confirmation: password }
                                  }
       }.to change(User, :count).by(1)
     end

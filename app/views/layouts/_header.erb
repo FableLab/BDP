@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Accueil</a>
+          <a class="nav-link" href="/">Accueil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Présentation</a>
@@ -16,9 +16,27 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Tutoriel</a>
         </li>
+        <% if current_user %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.name %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><hr class="dropdown-divider"></li>-->
+            <li>
+              <%= link_to 'Déconnexion', sessions_path, class: 'dropdown-item', method: 'delete' %>
+            </li>
+          </ul>
+        </li>
+        <% else %>
         <li class="nav-item">
           <%= link_to 'Inscription', new_user_path, class: 'nav-link' %>
         </li>
+        <li class="nav-item">
+          <%= link_to 'Connexion', new_sessions_path, class: 'nav-link' %>
+        </li>
+        <% end %>
       </ul>
     </div>
   </div>
