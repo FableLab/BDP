@@ -1,0 +1,33 @@
+<div class="row justify-content-md-center">
+  <div class="col-8">
+    <div class="alert alert-primary border my-4" role="alert">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path, class: '' %></li>
+          <li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
+        </ol>
+      </nav>
+    </div>
+
+    <table class="table table-striped border mb-4">
+    <thead class="bg-primary text-light border border-primary">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |user, i| %>
+      <tr>
+        <th><%= i + 1 %></th>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Edition', '#', class: 'btn btn-sm btn-primary' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>

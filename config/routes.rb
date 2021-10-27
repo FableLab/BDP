@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :users, only: [:new, :create]
   resource :sessions, only: [:new, :create, :destroy]
+  resources :admin, only: [:index]
+  namespace :admin do
+    resources :users, only: [:index]
+  end
 end
