@@ -3,7 +3,7 @@
     <div class="alert alert-primary border my-4" role="alert">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
-          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path, class: '' %></li>
+          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path %></li>
           <li class="breadcrumb-item active" aria-current="page">Utilisateurs</li>
         </ol>
       </nav>
@@ -24,7 +24,10 @@
         <th><%= i + 1 %></th>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Edition', '#', class: 'btn btn-sm btn-primary' %></td>
+        <td>
+          <%= link_to 'Détail', admin_user_path(user), class: 'btn btn-sm btn-primary' %>
+          <%= link_to 'Editer', edit_admin_user_path(user), class: 'btn btn-sm btn-warning' %>
+        </td>
       </tr>
       <% end %>
     </tbody>

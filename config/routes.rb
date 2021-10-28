@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
   resources :admin, only: [:index]
   namespace :admin do
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
   end
 end
