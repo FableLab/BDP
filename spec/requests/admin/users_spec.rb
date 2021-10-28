@@ -39,7 +39,7 @@ RSpec.describe 'Admin::Users', type: :request do
 
   describe 'GET /admin/users/:id' do
 
-    it 'renders the admin users edit template if admin' do
+    it 'renders the admin users show template if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
 
       get admin_user_path(User.first)

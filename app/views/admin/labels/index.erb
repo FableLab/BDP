@@ -1,0 +1,46 @@
+<div class="row justify-content-md-center admin mb-5">
+  <div class="col-lg-8 col-md-12">
+    <div class="alert alert-primary border mt-4" role="alert">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path %></li>
+          <li class="breadcrumb-item active" aria-current="page">Étiquettes</li>
+        </ol>
+      </nav>
+    </div>
+
+    <%= link_to new_admin_label_path, class: 'btn btn-success mb-3' do %>
+      <i class="fas fa-plus-square"> Créer une étiquette</i>
+    <% end %>
+
+    <table class="table table-striped border mb-4">
+    <thead class="bg-primary text-light border border-primary">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Nom</th>
+        <th scope="col">Identifiant</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @labels.each_with_index do |label, i| %>
+      <tr>
+        <th><%= i + 1 %></th>
+        <td><%= label.name %></td>
+        <td><%= label.slug %></td>
+        <td>
+          <%= link_to admin_label_path(label), class: 'btn btn-sm btn-primary' do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+    <div class="text-center">
+        <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+
+  </div>
+</div>

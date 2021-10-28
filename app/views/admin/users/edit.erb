@@ -1,5 +1,5 @@
 <div class="row justify-content-md-center">
-  <div class="col-8">
+  <div class="col-lg-8 col-md-12">
     <div class="alert alert-primary border my-4" role="alert">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb m-0">
@@ -15,7 +15,7 @@
 <div class="row justify-content-md-center">
   <div class="col-lg-4 col-md-6">
     <div class="card">
-      <h5 class="card-header">Editer</h5>
+      <h5 class="card-header">Edition utilisateur</h5>
       <div class="card-body">
 
         <%= form_with(model: @user, url: admin_user_path) do |f| %>
@@ -31,8 +31,13 @@
             <%= f.label 'Administrateur', class: 'form-check-label' %>
           </div>
 
-          <%= link_to 'Détail', admin_user_path(@user), class: 'btn btn-primary mt-3' %>
-          <%= f.submit 'Valider', class: 'btn btn-success mt-3' %>
+          <%= link_to admin_user_path(@user), class: 'btn btn-primary mt-3' do %>
+            <i class="fas fa-search"> Détail</i>
+          <% end %>
+
+          <%= f.button :submit, class: 'btn btn-success mt-3', data: {confirm: "Êtes-vous bien sûr de vouloir modifier cette étiquette de manière définitive ?"} do %>
+            <i class="fas fa-check"> Modifier</i>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -41,7 +46,9 @@
       <h5 class="card-header">Supprimer</h5>
       <div class="card-body">
         <p>Supprimer ce compte de manière définitive.</p>
-        <%= link_to 'Supprimer', admin_user_path(@user), class: 'btn btn-danger', method: :delete, data: {confirm: "Êtes-vous bien sûr de vouloir supprimer ce compte de manière définitive ?"} %>
+        <%= link_to admin_user_path(@user), class: 'btn btn-danger', method: :delete, data: {confirm: "Êtes-vous bien sûr de vouloir supprimer ce compte de manière définitive ?"} do %>
+          <i class="fas fa-trash-alt"> Supprimer</i>
+        <% end %>
       </div>
     </div>
 

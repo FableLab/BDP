@@ -1,5 +1,6 @@
 module ApplicationHelper
-
+  include Pagy::Frontend
+  
   def is_admin?
     if current_user and current_user.admin
       true
