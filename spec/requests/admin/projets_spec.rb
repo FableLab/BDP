@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin::labels', type: :request do
+RSpec.describe 'Admin::projets', type: :request do
 
   before do
     @password = Faker::Internet.password
@@ -10,81 +10,81 @@ RSpec.describe 'Admin::labels', type: :request do
                          password_confirmation: @password,
                          admin: true
     5.times do
-      @label = Label.create name: Faker::Verb.base
+      @projet = Projet.create name: Faker::Verb.base, description: Faker::Lorem.paragraph_by_chars
     end
   end
 
-  describe 'GET /admins/labels' do
+  describe 'GET /admins/projets' do
 
-    it 'not renders the admin labels template if not connected' do
-      get admin_labels_path
+    it 'not renders the admin projets template if not connected' do
+      get admin_projets_path
       expect(subject).not_to render_template('index')
     end
 
-    it 'not renders the admin label template if not admin' do
+    it 'not renders the admin projet template if not admin' do
       @admin.update admin: false
       user = @admin
       post sessions_path, params: { session: { email: user.email, password: @password }}
-      get admin_labels_path
+      get admin_projets_path
       expect(subject).not_to render_template('index')
     end
 
-    it 'renders the admin labels template if admin' do
+    it 'renders the admin projets template if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      get admin_labels_path
+      get admin_projets_path
       expect(subject).to render_template('index')
     end
   end
 
-  describe 'GET /admin/labels/:id' do
+  describe 'GET /admin/projets/:id' do
 
-    it 'renders the admin label show template if admin' do
+    it 'renders the admin projet show template if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
 
-      get admin_label_path(@label)
+      get admin_projet_path(@projet)
       expect(subject).to render_template('show')
     end
   end
 
-  describe 'GET /admin/labels/:id/edit' do
+  describe 'GET /admin/projets/:id/edit' do
 
     it 'renders the admin users edit template if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
 
-      get edit_admin_label_path(@label)
+      get edit_admin_projet_path(@projet)
       expect(subject).to render_template('edit')
     end
   end
 
-  describe 'PATCH /admin/labels/:id' do
+  describe 'PATCH /admin/projets/:id' do
 
     it 'edit name if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      label = Label.first
       new_name = Faker::Verb.base
-      patch admin_label_path(label.id), params: { label: { name: new_name }}
+      patch admin_projet_path(Projet.first.id), params: { projet: { name: new_name }}
 
-      expect(Label.first.name).to eq(new_name)
+      expect(Projet.first.name).to eq(new_name)
     end
   end
 
-  describe 'GET /admin/labels/new' do
+  describe 'GET /admin/projets/new' do
 
     it 'renders the new template if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      get new_admin_label_path
+      get new_admin_projet_path
       expect(subject).to render_template('new')
     end
   end
 
-  describe 'CREATE /admin/labels' do
+  describe 'CREATE /admin/projets' do
 
-    it 'create label if admin' do
+    it 'create projet if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      name = Faker::Name.first_name.downcase
+      params = { name: Faker::Name.first_name.downcase, description: Faker::Lorem.paragraph_by_chars }
 
-      post admin_labels_path, params: { label: { name: name } }
-      expect(Label.last.name).to eq(name)
+      post admin_projets_path, params: { projet: params }
+      expect(Projet.last.name).to eq(params[:name])
+      expect(Projet.last.description).to eq(params[:description])
     end
   end
 end

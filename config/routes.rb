@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :labels, only: [:index, :show, :edit, :update, :new, :create]
+    resources :projets, only: [:index, :show, :edit, :update, :new, :create]
   end
 end
