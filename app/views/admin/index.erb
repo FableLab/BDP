@@ -10,14 +10,21 @@
     </div>
 
     <ul class="list-group mb-4">
-      <li class="list-group-item">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <h5 class="m-0"><%= link_to 'Utilisateurs', admin_users_path, class: 'text-decoration-none text-dark' %></h5>
+        <span class="badge bg-primary rounded-pill"><%= User.count %></span>
       </li>
-      <li class="list-group-item">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <h5 class="m-0"><%= link_to 'Étiquettes', admin_labels_path, class: 'text-decoration-none text-dark' %></h5>
+        <span class="badge bg-primary rounded-pill"><%= Label.count %></span>
       </li>
-      <li class="list-group-item">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <h5 class="m-0"><%= link_to 'Projets', admin_projets_path, class: 'text-decoration-none text-dark' %></h5>
+        <span class="badge bg-primary rounded-pill"><%= Projet.count %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <h5 class="m-0"><%= link_to 'Catégories', admin_categories_path, class: 'text-decoration-none text-dark' %></h5>
+        <span class="badge bg-primary rounded-pill"><%= Category.count %></span>
       </li>
     </ul>
   </div>

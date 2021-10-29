@@ -34,7 +34,9 @@ RSpec.describe Projet, type: :model do
 
   it 'is invalid with not uniq name' do
     @projet.save
-    other_projet = Projet.new name: @projet.name
+    other_projet = Projet.new name: @projet.name,
+                              description: Faker::Lorem.paragraph_by_chars,
+                              code: Faker::Lorem.characters(number: 2).upcase
     expect(other_projet).to be_invalid
   end
 
