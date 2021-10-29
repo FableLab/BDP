@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.last(100)
+    @pagy, @users = pagy(User, items: 30)
   end
 
   def show
