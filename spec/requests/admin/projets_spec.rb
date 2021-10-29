@@ -10,7 +10,9 @@ RSpec.describe 'Admin::projets', type: :request do
                          password_confirmation: @password,
                          admin: true
     5.times do
-      @projet = Projet.create name: Faker::Verb.base, description: Faker::Lorem.paragraph_by_chars
+      @projet = Projet.create name: Faker::Verb.base,
+                              description: Faker::Lorem.paragraph_by_chars,
+                              code: Faker::Lorem.characters(number: 2).upcase
     end
   end
 
@@ -80,7 +82,9 @@ RSpec.describe 'Admin::projets', type: :request do
 
     it 'create projet if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      params = { name: Faker::Name.first_name.downcase, description: Faker::Lorem.paragraph_by_chars }
+      params = { name: Faker::Verb.base,
+                 description: Faker::Lorem.paragraph_by_chars,
+                 code: Faker::Lorem.characters(number: 2).upcase }
 
       post admin_projets_path, params: { projet: params }
       expect(Projet.last.name).to eq(params[:name])

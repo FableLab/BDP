@@ -40,6 +40,6 @@ class Admin::ProjetsController < ApplicationController
   end
 
   def projet_params
-    params.require(:projet).permit(:name, :description)
+    params.require(:projet).permit(:name, :description, :code)
   end
 end

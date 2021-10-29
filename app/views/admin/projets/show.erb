@@ -19,11 +19,11 @@
       <div class="card-body">
 
         <form>
-          <%= label :user, 'Nom', class: 'mt-1' %>
+          <%= label :projet, 'Nom', class: 'mt-1' %>
           <%= text_field :projet, :name, class: 'form-control mt-1', readonly: :readonly  %>
 
-          <%= label :user, 'Identifiant', class: 'mt-3' %>
-          <%= text_field :projet, :slug, class: 'form-control mt-1', readonly: :readonly %>
+          <%= label :projet, 'Identifiant', class: 'mt-3' %>
+          <%= text_field :projet, :code, class: 'form-control mt-1', required: :required, minlength: 2, maxlength: 2, readonly: :readonly %>
 
           <%= label :user, 'Description', class: 'mt-3' %>
           <%= text_area :projet, :description, class: 'form-control mt-1', readonly: :readonly, rows: 10 %>

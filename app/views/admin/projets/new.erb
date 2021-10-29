@@ -21,6 +21,9 @@
           <%= f.label 'Nom', class: 'mt-1' %>
           <%= f.text_field :name, class: 'form-control mt-1', required: :required, minlength: 2  %>
 
+          <%= f.label 'Identifiant', class: 'mt-1' %>
+          <%= f.text_field :code, class: 'form-control mt-1', required: :required, minlength: 2, maxlength: 2  %>
+
           <%= f.label 'Description', class: 'mt-2' %>
           <%= f.text_area  :description, class: 'form-control mt-1', minlength: 2, rows: 10 %>
 
