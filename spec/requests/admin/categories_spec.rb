@@ -64,7 +64,7 @@ RSpec.describe 'Admin::Categories', type: :request do
       new_name = Faker::Verb.base
       patch admin_category_path(Category.first.id), params: { category: { name: new_name }}
 
-      expect(Category.first.name).to eq(new_name)
+      expect(Category.first.name).to eq(new_name.humanize)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe 'Admin::Categories', type: :request do
                  code: Faker::Lorem.characters(number: 3).upcase }
 
       post admin_categories_path, params: { category: params }
-      expect(Category.last.name).to eq(params[:name])
+      expect(Category.last.name).to eq(params[:name].humanize)
     end
   end
 end

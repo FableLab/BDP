@@ -65,7 +65,7 @@ RSpec.describe 'Admin::projets', type: :request do
       new_name = Faker::Verb.base
       patch admin_projet_path(Projet.first.id), params: { projet: { name: new_name }}
 
-      expect(Projet.first.name).to eq(new_name)
+      expect(Projet.first.name).to eq(new_name.humanize)
     end
   end
 
@@ -87,7 +87,7 @@ RSpec.describe 'Admin::projets', type: :request do
                  code: Faker::Lorem.characters(number: 2).upcase }
 
       post admin_projets_path, params: { projet: params }
-      expect(Projet.last.name).to eq(params[:name])
+      expect(Projet.last.name).to eq(params[:name].humanize)
       expect(Projet.last.description).to eq(params[:description])
     end
   end

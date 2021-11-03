@@ -10,6 +10,9 @@ class Projet < ApplicationRecord
   validates :code,  presence: true, length: { is: 2 }, uniqueness: true
   validates :description, length: { maximum: 25000 }
 
+  before_save do
+    self.name = self.name.humanize if self.name
+  end
 
   def upcase_code
     self.code.upcase! if self.code
