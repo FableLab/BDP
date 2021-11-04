@@ -1,0 +1,38 @@
+<div class="row justify-content-md-center">
+  <div class="col-lg-8 col-md-12">
+    <div class="alert alert-primary border my-4" role="alert">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path %></li>
+          <li class="breadcrumb-item active"><%= link_to 'Formats', admin_formats_path %></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="col-lg-5 col-md-6">
+    <div class="card">
+      <h5 class="card-header">Créer une format</h5>
+      <div class="card-body">
+
+        <%= form_with(model: @format, url: admin_formats_path) do |f| %>
+          <%= f.label 'Nom', class: 'mt-1' %>
+          <%= f.text_field :name, class: 'form-control mt-1', required: :required, minlength: 2  %>
+
+          <%= f.label 'Identifiant', class: 'mt-1' %>
+          <%= f.text_field :code, class: 'form-control mt-1', required: :required, minlength: 3, maxlength: 3  %>
+
+          <%= f.label 'Groupe', class: 'mt-1' %>
+          <%= f.select :group, Format.groups.keys.to_a, {}, { class: 'form-select mt-1', required: :required }%>
+
+          <%= f.button :submit, class: 'btn btn-success mt-3' do %>
+            <i class="fas fa-check"> Valider</i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
