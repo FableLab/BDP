@@ -30,6 +30,10 @@
         <h5 class="m-0"><%= link_to 'Formats', admin_formats_path, class: 'text-decoration-none text-dark' %></h5>
         <span class="badge bg-primary rounded-pill"><%= Format.count %></span>
       </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <h5 class="m-0"><%= link_to 'Ressources', admin_resources_path, class: 'text-decoration-none text-dark' %></h5>
+        <span class="badge bg-primary rounded-pill"><%= Resource.count %></span>
+      </li>
     </ul>
   </div>
 </div>

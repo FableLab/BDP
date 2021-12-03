@@ -1,0 +1,55 @@
+<div class="row justify-content-md-center">
+  <div class="col-lg-8 col-md-12">
+    <div class="alert alert-primary border my-4" role="alert">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item"><%= link_to 'Administration', admin_index_path %></li>
+          <li class="breadcrumb-item"><%= link_to 'Ressources', admin_resources_path %></li>
+          <li class="breadcrumb-item "><%= @resource.slug %></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="col-lg-5 col-md-6">
+    <div class="card mb-5">
+      <h5 class="card-header">Ressource</h5>
+      <div class="card-body">
+
+        <form>
+          <%= label :resource, 'Identifiant', class: 'mt-1' %>
+          <%= text_field :resource, :slug, class: 'form-control mt-1', required: :required, minlength: 2, maxlength: 2, readonly: :readonly %>
+
+          <%= label :resource, 'Étiquette', class: 'mt-1' %>
+          <%= text_field_tag :label, @resource.label.name, class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Projet', class: 'mt-1' %>
+          <%= text_field_tag :projet, @resource.projet.try(:name), class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Catégorie', class: 'mt-1' %>
+          <%= text_field_tag :projet, @resource.category.try(:name), class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Format', class: 'mt-1' %>
+          <%= text_field_tag :projet, @resource.format.try(:name), class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Langue', class: 'mt-1' %>
+          <%= text_field :resource, :code_language, class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Numéro', class: 'mt-1' %>
+          <%= text_field :resource, :code_number, class: 'form-control mt-1', readonly: :readonly  %>
+
+          <% unless @resource.translation.blank? %>
+            <%= label :resource, 'Traduction', class: 'mt-1' %>
+            <%= text_field_tag :projet, @resource.translation, class: 'form-control mt-1', readonly: :readonly  %>
+          <% end %>
+
+          <%= link_to edit_admin_resource_path(@resource), class: 'btn btn-warning mt-3' do %>
+            <i class="fas fa-pencil-alt"> Modifier</i>
+          <% end %>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

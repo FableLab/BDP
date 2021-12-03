@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'sorcery', '~> 0.16.1'
 gem 'pagy', '~> 5.1', '>= 5.1.3'
+gem 'language_list', '~> 1.2', '>= 1.2.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

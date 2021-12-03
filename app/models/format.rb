@@ -8,7 +8,7 @@ class Format < ApplicationRecord
   validates :code,  presence: true, length: { is: 3 }, uniqueness: true
 
   before_save do
-    self.name = self.name.humanize if self.name
+    self.name = name.slice(0,1).capitalize + name.slice(1..-1) if self.name
   end
 
   def upcase_code

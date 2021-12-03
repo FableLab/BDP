@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resources :projets, only: [:index, :show, :edit, :update, :new, :create]
     resources :categories, only: [:index, :show, :edit, :update, :new, :create]
     resources :formats, only: [:index, :show, :edit, :update, :new, :create]
+    resources :resources, only: [:index, :show, :edit, :update, :new, :create]
   end
 end

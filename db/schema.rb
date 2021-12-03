@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_160806) do
+ActiveRecord::Schema.define(version: 2021_11_04_173755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 2021_11_04_160806) do
     t.string "code"
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.boolean "published"
+    t.string "code_language"
+    t.string "code_number"
+    t.string "translation"
+    t.string "slug"
+    t.bigint "label_id"
+    t.bigint "projet_id"
+    t.bigint "category_id"
+    t.bigint "format_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_resources_on_category_id"
+    t.index ["format_id"], name: "index_resources_on_format_id"
+    t.index ["label_id"], name: "index_resources_on_label_id"
+    t.index ["projet_id"], name: "index_resources_on_projet_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -57,4 +75,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_160806) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "resources", "categories"
+  add_foreign_key "resources", "formats"
+  add_foreign_key "resources", "labels"
+  add_foreign_key "resources", "projets"
 end

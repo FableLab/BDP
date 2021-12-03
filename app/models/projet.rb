@@ -11,7 +11,7 @@ class Projet < ApplicationRecord
   validates :description, length: { maximum: 25000 }
 
   before_save do
-    self.name = self.name.humanize if self.name
+    self.name = name.slice(0,1).capitalize + name.slice(1..-1) if self.name
   end
 
   def upcase_code

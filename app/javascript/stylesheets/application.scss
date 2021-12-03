@@ -1,8 +1,17 @@
 $primary: #312b6b;
 $info: #0d6efd;
 
+@import "~bootstrap-select/sass/bootstrap-select";
 @import "~bootstrap/scss/bootstrap";
 
 table.table > :not(:first-child) {
   border-top: none;
+}
+
+.dropdown-menu.inner.show {
+  min-width: 0 !important;
+}
+
+.bootstrap-select button{
+  min-height: 38px;
 }
