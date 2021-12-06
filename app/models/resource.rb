@@ -29,6 +29,13 @@ class Resource < ApplicationRecord
     projet_code = projet.try(:code) || 'XX'
     category_code = category.try(:code) || 'XXX'
     format_code = format.try(:code)||'XXX'
-    self.slug = "#{projet_code}-#{category_code}-#{format_code}-#{code_language}-#{code_number}-#{label.slug}" if label
+    if label
+      self.slug = "#{projet_code}-#{category_code}-#{format_code}-#{code_language}-#{code_number}-#{label.slug}"
+    end
+  end
+
+  def generate_slug!
+    generate_slug
+    save
   end
 end
