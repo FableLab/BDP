@@ -26,7 +26,7 @@ var ShowUploadOrTranslationSection = function() {
   if (code == 'TRA') {
     $(".ressource-translation").removeClass('d-none');
     $(".ressource-upload").addClass('d-none');
-    $("#resource_").removeAttr('required');
+    $("#resource_file").removeAttr('required');
   } else {
     $(".ressource-upload").removeClass('d-none');
     $(".ressource-translation").addClass('d-none');

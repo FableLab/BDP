@@ -14,9 +14,9 @@ class Admin::ResourcesController < ApplicationController
 
   def update
     if @resource.update resource_params
-      redirect_to admin_resource_path(@resource)
+      redirect_to resource_path(@resource.slug)
     else
-      render :edit
+      render :show
     end
   end
 
@@ -27,7 +27,7 @@ class Admin::ResourcesController < ApplicationController
   def create
     @resource = Resource.new(resource_params)
     if @resource.save
-      redirect_to admin_resource_path(@resource)
+      redirect_to resource_path(@resource.slug)
     else
       render :new
     end

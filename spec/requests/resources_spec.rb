@@ -22,7 +22,7 @@ RSpec.describe 'Resources', type: :request do
       @format = Format.create name: Faker::Verb.base,
                               code: Faker::Lorem.characters(number: 3).upcase,
                               group: 'autres'
-      @resource = Resource.create code_number: '0001', code_language: 'eng', translation: 'car',
+      @resource = Resource.create code_language: 'ENG', translation: 'car',
                                   projet: @projet, label: @label, category: @category, format: @format
 
       get resource_path(slug: @resource.slug)

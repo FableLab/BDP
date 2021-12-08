@@ -3,12 +3,12 @@ class ResourcesController < ApplicationController
 
   def index
     @resource = Resource.new resource_params
-    puts resource_params
     @pagy, @resources = pagy(Resource.order(created_at: :desc).where(resource_params), items: 12)
   end
 
   def show
-    @resource = Resource.find_by slug: params[:slug]
+    code_number = params[:slug].split('-')[4]
+    @resource = Resource.find_by_code_number(code_number)
   end
 
   private

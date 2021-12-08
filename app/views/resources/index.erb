@@ -24,7 +24,8 @@
           </div>
           <div class="col-12 col-lg">
             <%= f.label 'Langue', class: 'mt-1' %>
-            <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3} - #{l.name}", l.iso_639_3.upcase] }.append(['XXX - Unknown', 'XXX']) %>
+            <% @resource.code_language = '' %>
+            <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3} - #{l.name}", l.iso_639_3.upcase] }.append(['xxx - Unknown', 'xxx']) %>
             <%= f.select :code_language, languages_options, { include_blank: true }, { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1' }%>
           </div>
         </div>

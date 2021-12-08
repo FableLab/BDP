@@ -37,8 +37,11 @@
           <%= label :resource, 'Langue', class: 'mt-1' %>
           <%= text_field :resource, :code_language, class: 'form-control mt-1', readonly: :readonly  %>
 
-          <%= label :resource, 'Numéro', class: 'mt-1' %>
+          <%= label :resource, 'Identifiant', class: 'mt-1' %>
           <%= text_field :resource, :code_number, class: 'form-control mt-1', readonly: :readonly  %>
+
+          <%= label :resource, 'Version', class: 'mt-1' %>
+          <%= text_field :resource, :version_formatted, class: 'form-control mt-1', readonly: :readonly  %>
 
           <% unless @resource.translation.blank? %>
             <%= label :resource, 'Traduction', class: 'mt-1' %>

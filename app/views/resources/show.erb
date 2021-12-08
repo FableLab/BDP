@@ -42,6 +42,11 @@
                 <button type="button" class="btn btn-success mt-3">Télécharger</button>
               <% end %>
             <% end %>
+            <% if current_user && current_user.admin? %>
+              <%= link_to edit_admin_resource_path(@resource), class: 'btn btn-warning mt-3 ms-1' do %>
+                <i class="fas fa-pencil-alt"> Modifier</i>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

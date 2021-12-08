@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_123824) do
+ActiveRecord::Schema.define(version: 2021_12_08_222637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,9 +77,8 @@ ActiveRecord::Schema.define(version: 2021_12_08_123824) do
   create_table "resources", force: :cascade do |t|
     t.boolean "published"
     t.string "code_language"
-    t.string "code_number"
+    t.integer "version"
     t.string "translation"
-    t.string "slug"
     t.bigint "label_id"
     t.bigint "projet_id"
     t.bigint "category_id"

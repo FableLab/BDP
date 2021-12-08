@@ -33,11 +33,11 @@
         <%= f.select :format_id, grouped_options_for_select(formats_options), {  }, { class: 'form-select mt-1', required: :required }%>
 
         <%= f.label 'Langue', class: 'mt-1' %>
-        <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3.upcase} - #{l.name}", l.iso_639_3.upcase] }.append(['XXX - Unknown', 'XXX']) %>
-        <%= f.select :code_language, languages_options, { include_blank: true }, { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1 rounded', required: :required }%>
+        <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3} - #{l.name}", l.iso_639_3.upcase] }.append(['xxx - Unknown', 'xxx']) %>
+        <%= f.select :code_language, languages_options, { include_blank: true }, { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1' }%>
 
-        <%= f.label 'Numéro', class: 'mt-1' %>
-        <%= f.select :code_number, (1..1000).map {|n| "%.4i" % n}, { selected: @resource.code_number || '0001'}, { class: 'form-select mt-1', required: :required }%>
+        <%= f.label 'Version', class: 'mt-1' %>
+        <%= f.select :version, (1..99), { selected: @resource.version }, { class: 'form-select mt-1', required: :required }%>
 
         <div class="ressource-translation d-none">
           <%= f.label 'Traduction', class: 'mt-1' %>

@@ -19,7 +19,7 @@ RSpec.describe 'Admin::resources', type: :request do
       @format = Format.create name: Faker::Verb.base,
                               code: Faker::Lorem.characters(number: 3).upcase,
                               group: 'autres'
-      @resource = Resource.create code_number: '0001', code_language: 'eng', translation: 'car',
+      @resource = Resource.create code_language: 'ENG', translation: 'car',
                                   projet: @projet, label: @label, category: @category, format: @format
     end
   end
@@ -90,13 +90,12 @@ RSpec.describe 'Admin::resources', type: :request do
 
     it 'create resource if admin' do
       post sessions_path, params: { session: { email: @admin.email, password: @password }}
-      params = { code_number: '0002', code_language: 'ENG', translation: 'car',
+      params = { code_language: 'ENG', translation: 'car',
                  projet_id: @projet.id, label_id: @label.id, category_id: @category.id, format_id: @format.id }
 
       post admin_resources_path, params: { resource: params }
       expect(Resource.last.translation).to eq(params[:translation])
       expect(Resource.last.code_language).to eq(params[:code_language])
-      expect(Resource.last.code_number).to eq(params[:code_number])
     end
   end
 end
