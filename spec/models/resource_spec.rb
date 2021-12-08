@@ -37,7 +37,7 @@ RSpec.describe Resource, type: :model do
 
     @format = Format.create name: Faker::Verb.base,
                             code: Faker::Lorem.characters(number: 3).upcase,
-                            group: ['illustrations', 'sons', 'documents', 'photos', 'autres'].sample
+                            group: 'autres'
 
     @label = Label.create name: Faker::Verb.base
 

@@ -5,24 +5,24 @@
       <h5 class="card-header">Moteur de recherche</h5>
       <div class="card-body">
         <div class="row">
-          <div class="col">
+          <div class="col-6 col-lg">
             <%= f.label 'Projet', class: 'mt-1' %>
             <%= f.select :projet_id, Projet.order(:name).all.map {|p| [p.name, p.id] }, { include_blank: true }, { class: 'form-select mt-1'}%>
           </div>
-          <div class="col">
+          <div class="col-6 col-lg">
             <%= f.label 'Étiquette', class: 'mt-1' %>
             <%= f.select :label_id, Label.order(:name).all.map {|l| [l.name, l.id] }, { include_blank: true} , { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1 rounded'}%>
           </div>
-          <div class="col">
+          <div class="col-6 col-lg">
             <%= f.label 'Catégorie', class: 'mt-1' %>
             <%= f.select :category_id, Category.order(:name).all.map {|c| [c.name, c.id] }, { include_blank: true }, { class: 'form-select mt-1' }%>
           </div>
-          <div class="col">
+          <div class="col-6 col-lg">
             <%= f.label 'Format', class: 'mt-1' %>
             <% formats_options = Format.order(:group).distinct.pluck(:group).map { |g| [g, Format.where(group: g).map {|fo| [fo.name, fo.id, {'data-code': fo.code, selected: fo.id == @resource.format_id }] }] } %>
             <%= f.select :format_id, grouped_options_for_select(formats_options), { include_blank: true }, { class: 'form-select mt-1' }%>
           </div>
-          <div class="col">
+          <div class="col-12 col-lg">
             <%= f.label 'Langue', class: 'mt-1' %>
             <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3} - #{l.name}", l.iso_639_3.upcase] }.append(['XXX - Unknown', 'XXX']) %>
             <%= f.select :code_language, languages_options, { include_blank: true }, { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1' }%>
@@ -46,8 +46,7 @@
               <i class="fa fa-volume-up pe-2"></i> <%= resource.label.name %>
             </h5>
             <% else %>
-            <h3></h3>
-              <img class="card-img-top resources-thumb-img m-0" src="https://www.fable-lab.com/wp-content/uploads/h5p/content/31/images/match-5e2f1a769455c.png" alt="">
+              <%= image_tag url_for(resource.file), class: 'card-img-top resources-thumb-img m-0' %>
             <% end %>
             <% end %>
 
@@ -62,10 +61,11 @@
     <div class="alert alert-secondary mt-3" role="alert">
       Désolé mais aucun résultat ne correspond à cette recherche.
     </div>
-    <% end  %>
-
+    <% else %>
     <div class="mt-5">
       <%== pagy_bootstrap_nav(@pagy) %>
     </div>
+    <% end  %>
+
   </div>
 </div>

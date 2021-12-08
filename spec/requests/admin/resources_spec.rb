@@ -18,7 +18,7 @@ RSpec.describe 'Admin::resources', type: :request do
                                   code: Faker::Lorem.characters(number: 3).upcase
       @format = Format.create name: Faker::Verb.base,
                               code: Faker::Lorem.characters(number: 3).upcase,
-                              group: ['illustrations', 'sons', 'documents', 'photos', 'autres'].sample
+                              group: 'autres'
       @resource = Resource.create code_number: '0001', code_language: 'eng', translation: 'car',
                                   projet: @projet, label: @label, category: @category, format: @format
     end

@@ -14,28 +14,30 @@
 <div class="row justify-content-md-center">
   <div class="col-lg-5 col-md-6">
     <%= form_with(model: @resource, url: admin_resources_path) do |f| %>
-    <div class="card">
+    <div class="card mb-5">
       <h5 class="card-header">Crée une ressource</h5>
       <div class="card-body">
+        <%= render 'shared/errors', object: @resource %>
+
         <%= f.label 'Étiquette', class: 'mt-1' %>
-        <%= f.select :label_id, Label.order(:name).all.map {|l| [l.name, l.id] }, { include_blank: true} , { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1 rounded', required: :required }%>
+        <%= f.select :label_id, Label.order(:name).all.map {|l| [l.name, l.id] }, {} , { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1 rounded', required: :required }%>
 
         <%= f.label 'Projet', class: 'mt-1' %>
-        <%= f.select :projet_id, Projet.order(:name).all.map {|p| [p.name, p.id] }, { include_blank: true }, { class: 'form-select mt-1', required: :required }%>
+        <%= f.select :projet_id, Projet.order(:name).all.map {|p| [p.name, p.id] }, {}, { class: 'form-select mt-1', required: :required }%>
 
         <%= f.label 'Catégorie', class: 'mt-1' %>
-        <%= f.select :category_id, Category.order(:name).all.map {|c| [c.name, c.id] }, { include_blank: true }, { class: 'form-select mt-1', required: :required  }%>
+        <%= f.select :category_id, Category.order(:name).all.map {|c| [c.name, c.id] }, {}, { class: 'form-select mt-1', required: :required  }%>
 
         <%= f.label 'Format', class: 'mt-1' %>
-        <% grouped_options = Format.order(:group).distinct.pluck(:group).map { |g| [g, Format.where(group: g).map {|fo| [fo.name, fo.id, {'data-code': fo.code}] }] } %>
-        <%= f.select :format_id, grouped_options_for_select(grouped_options), { include_blank: true }, { class: 'form-select mt-1', required: :required }%>
+        <% formats_options = Format.order(:group).distinct.pluck(:group).map { |g| [g, Format.where(group: g).map {|fo| [fo.name, fo.id, {'data-code': fo.code, selected: fo.id == @resource.format_id }] }] } %>
+        <%= f.select :format_id, grouped_options_for_select(formats_options), {  }, { class: 'form-select mt-1', required: :required }%>
 
         <%= f.label 'Langue', class: 'mt-1' %>
         <% languages_options = LanguageList::ALL_LANGUAGES.map { |l| ["#{l.iso_639_3.upcase} - #{l.name}", l.iso_639_3.upcase] }.append(['XXX - Unknown', 'XXX']) %>
         <%= f.select :code_language, languages_options, { include_blank: true }, { 'data-live-search': 'true', 'data-style': 'btn-white', class: 'selectPicker border w-100 mt-1 rounded', required: :required }%>
 
         <%= f.label 'Numéro', class: 'mt-1' %>
-        <%= f.select :code_number, (1..1000).map {|n| "%.4i" % n}, { include_blank: true, selected: '0001'}, { class: 'form-select mt-1', required: :required }%>
+        <%= f.select :code_number, (1..1000).map {|n| "%.4i" % n}, { selected: @resource.code_number || '0001'}, { class: 'form-select mt-1', required: :required }%>
 
         <div class="ressource-translation d-none">
           <%= f.label 'Traduction', class: 'mt-1' %>
@@ -46,7 +48,7 @@
         </div>
         <div class="ressource-upload">
           <%= f.label 'Fichier', class: 'mt-1' %>
-          <%= f.file_field nil, class: 'form-control mt-1', minlength: 2, disabled: :disabled %>
+          <%= f.file_field :file, class: 'form-control mt-1', required: :required %>
           <%= f.button :submit, class: 'btn btn-success mt-3' do %>
           <i class="fas fa-check"> Valider</i>
           <% end %>

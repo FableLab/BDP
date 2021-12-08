@@ -40,6 +40,6 @@ class Admin::ResourcesController < ApplicationController
   end
 
   def resource_params
-    params.require(:resource).permit(:projet_id, :label_id, :category_id, :format_id, :code_language, :code_number, :translation).reject{|_, v| v.blank?}
+    params.require(:resource).permit(:projet_id, :label_id, :category_id, :format_id, :code_language, :code_number, :translation, :file).reject{|_, v| v.blank?}
   end
 end

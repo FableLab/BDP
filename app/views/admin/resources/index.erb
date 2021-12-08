@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @resources.each_with_index do |resource, i| %>
+        <% @resources.order(created_at: :desc).each_with_index do |resource, i| %>
         <tr>
           <th><%= i + 1 %></th>
           <td><%= resource.slug %></td>
