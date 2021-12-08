@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     resources :formats, only: [:index, :show, :edit, :update, :new, :create]
     resources :resources, only: [:index, :show, :edit, :update, :new, :create]
   end
+  resources :resources, only: [:index]
+  resources :resources, only: [:show], param: :slug
 end

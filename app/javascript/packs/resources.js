@@ -1,12 +1,18 @@
-$(document).on('ready turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
     var selectpickers = $('.selectPicker')
-    if (selectpickers) { selectpickers.selectpicker({noneSelectedText: ' '}); }
+    if($('.bootstrap-select').length) { console.log('select') }
+    if ($('.bootstrap-select')) { $('.selectPicker').selectpicker({noneSelectedText: ''}); }
+    //if (selectpickers) { selectpickers.selectpicker({noneSelectedText: ' '}); }
 
     var resource_format_id = $("#resource_format_id");
     if (resource_format_id) { ShowUploadOrTranslationSection(); }
 
     resource_format_id.change(function() {
       ShowUploadOrTranslationSection();
+    });
+
+    $("#index-search-engine :input").change(function() {
+      $("#index-search-engine").submit();
     });
 });
 

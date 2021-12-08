@@ -18,3 +18,4 @@ import './resources'
 
 import "@fortawesome/fontawesome-free/css/all"
 import '../stylesheets/application'
+import '../stylesheets/resources'
