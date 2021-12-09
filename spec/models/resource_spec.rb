@@ -29,4 +29,31 @@ RSpec.describe Resource, type: :model do
 
     expect(id).to eq(@resource.id)
   end
+
+  it 'rename filename automatically with new slug if projet, category or format is edited' do
+    # @projet = Projet.create name: Faker::Verb.base,
+    #                      description: Faker::Lorem.paragraph_by_chars,
+    #                      code: Faker::Lorem.characters(number: 2).upcase
+    #
+    # @category = Category.create name: Faker::Verb.base,
+    #                             code: Faker::Lorem.characters(number: 3).upcase
+    #
+    # @format = Format.create name: Faker::Verb.base,
+    #                         code: Faker::Lorem.characters(number: 3).upcase,
+    #                         group: ['illustrations']
+    #
+    # @label = Label.create name: Faker::Verb.base
+    #
+    # @resource.update projet_id: @projet.id,
+    #                   category_id: @category.id,
+    #                   format_id: @format.id,
+    #                   label_id: @label.id
+    #
+    # @projet.update(code: 'PR')
+    # @category.update(code: 'CAT')
+    # @format.update(code: 'FOR')
+    # @label.update(name: 'test')
+    # @resource.reload
+    # expect(@resource.file.blob.filename).to eq("PR-CAT-FOR-#{@resource.code_number}-01-test")
+  end
 end

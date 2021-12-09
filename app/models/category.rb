@@ -16,6 +16,6 @@ class Category < ApplicationRecord
   end
 
   def update_resource_slug
-    self.resources.each { |r| r.generate_slug! }
+    self.resources.each { |r| r.rename_file! }
   end
 end

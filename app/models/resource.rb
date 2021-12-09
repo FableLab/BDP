@@ -9,7 +9,7 @@ class Resource < ApplicationRecord
   attr_default :version, 1
 
   before_validation :remove_translation_spaces
-  after_save :rename_file
+  after_save :rename_file!
 
   validates :file, attached: true, content_type: [:jpg, :jpeg], size: { less_than: 3.megabytes },
                                    if: -> { format.try(:group) == 'Photos' }
@@ -33,7 +33,7 @@ class Resource < ApplicationRecord
     self.file.filename.extension
   end
 
-  def rename_file
+  def rename_file!
     file.blob.update!(filename: "#{slug}.#{file_extension}") if file.present?
   end
 
