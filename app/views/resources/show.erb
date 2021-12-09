@@ -11,11 +11,11 @@
       <div class="row align-items-center">
         <div class="col-6">
           <% if @resource.translation %>
-            <h5 style="height: 390px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
+            <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
               <i class="fa fa-language pe-2"></i> <%= @resource.translation %>
             </h5>
           <% elsif @resource.format.try(:group) == 'Sons' %>
-          <h5 style="height: 390px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
+          <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
             <i class="fa fa-volume-up pe-2"></i> <%= @resource.label.try(:name) %>
           </h5>
           <% else %>
@@ -31,7 +31,8 @@
             <p class="mb-1">Format: <%= @resource.format.try(:name) %></p>
             <p class="mb-1">Mot: <%= @resource.label.try(:name) %></p>
             <p class="mb-1">Numéro: <%= @resource.code_number %></p>
-            <p class="mb-1">Langue: <%= @resource.code_language %></p>
+            <p class="mb-1">Version: <%= @resource.version_formatted %></p>
+            <p class="mb-1">Langue: <%= @resource.code_language.upcase %></p>
             <p class="mb-1">Dernière modification: <%= time_ago_in_words @resource.updated_at %></p>
             <% if @resource.format.try(:group) == 'Sons' %>
               <audio controls src="<%= url_for(@resource.file) %>" class="mt-2 w-100 pe-4"></audio>

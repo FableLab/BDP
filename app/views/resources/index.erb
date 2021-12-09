@@ -35,27 +35,27 @@
 
     <div class="row">
       <% @resources.each do |resource| %>
-        <div class="col-lg-2 col-md-3 col-sm-4 py-3 align-self-center">
-          <div class="card resources-thumb-card">
-            <%= link_to resource_path(resource.slug) do %>
-            <% if resource.translation %>
-              <h5 class="card-text resources-thumb-header align-items-center d-flex justify-content-center m-0 bg-light text-dark">
-                <i class="fa fa-language pe-2"></i> <%= resource.translation %>
-              </h5>
-            <% elsif resource.format.try(:group) == 'Sons' %>
-            <h5 class="card-text resources-thumb-header align-items-center d-flex justify-content-center m-0 bg-light text-dark">
-              <i class="fa fa-volume-up pe-2"></i> <%= resource.label.name %>
-            </h5>
-            <% else %>
-              <%= image_tag url_for(resource.file), class: 'card-img-top resources-thumb-img m-0' %>
-            <% end %>
-            <% end %>
+      <div class="col-lg-2 col-md-3 col-sm-4 py-3 align-self-center">
+        <div class="card resources-thumb-card">
+          <%= link_to resource_path(resource.slug) do %>
+          <% if resource.translation %>
+          <h5 class="card-text text-center resources-thumb-header align-items-center d-flex justify-content-center m-0 bg-light text-dark">
+            <i class="fa fa-language pe-2"> <span class="resources-thumb-header-display"><%= resource.translation %></span></i>
+          </h5>
+          <% elsif resource.format.try(:group) == 'Sons' %>
+          <h5 class="card-text text-center resources-thumb-header align-items-center d-flex justify-content-center m-0 bg-light text-dark">
+            <i class="fa fa-volume-up pe-2"> <span class="resources-thumb-header-display"><%= resource.label.name %></span></i>
+          </h5>
+          <% else %>
+          <%= image_tag url_for(resource.file), class: 'card-img-top resources-thumb-img m-0' %>
+          <% end %>
+          <% end %>
 
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><%= resource.slug %></li>
-            </ul>
-          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item resources-thumb-card-slug"><%= resource.slug.truncate(38) %></li>
+          </ul>
         </div>
+      </div>
       <% end %>
     </div>
     <% if @resources.empty? %>

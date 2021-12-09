@@ -6,9 +6,11 @@
       </div>
       <div class="card-body">
 
+        <%= render 'shared/errors', object: @user %>
+
         <%= form_with(model: @user) do |f| %>
           <%= f.label 'Pseudo', class: 'mt-2' %>
-          <%= f.text_field :name, class: 'form-control mt-1', required: :required  %>
+          <%= f.text_field :name, class: 'form-control mt-1', required: :required, minlength: 3, onkeypress: 'return event.charCode != 32'  %>
 
           <%= f.label 'Adresse email', class: 'mt-2' %>
           <%= f.email_field :email, class: 'form-control mt-1', required: :required %>
