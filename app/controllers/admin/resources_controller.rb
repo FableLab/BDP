@@ -21,7 +21,8 @@ class Admin::ResourcesController < ApplicationController
   end
 
   def new
-    @resource = Resource.new
+    resource_params = Resource.last.try(:slice, [:projet_id, :category_id, :format_id, :code_language])
+    @resource = Resource.new resource_params
   end
 
   def create
