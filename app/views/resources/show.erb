@@ -11,11 +11,11 @@
       <div class="row align-items-center">
         <div class="col-6">
           <% if @resource.translation %>
-            <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
-              <i class="fa fa-language pe-2"></i> <%= @resource.translation %>
+            <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark text-center">
+              <i class="fa fa-language pe-2"> <span class="resources-thumb-header-display"><%= @resource.translation %></span></i>
             </h5>
           <% elsif @resource.format.try(:group) == 'Sons' %>
-          <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark">
+          <h5 style="height: 420px" class="card-text align-items-center d-flex justify-content-center m-0 bg-light text-dark text-center">
             <i class="fa fa-volume-up pe-2"></i> <%= @resource.label.try(:name) %>
           </h5>
           <% else %>
