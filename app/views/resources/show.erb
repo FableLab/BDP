@@ -23,7 +23,7 @@
           <% end %>
         </div>
         <div class="col-6 py-3">
-          <div class="">
+          <div>
 
             <h3><%= @resource.label.try(:name).capitalize %></h3>
             <p class="mb-1">Projet: <%= @resource.projet.try(:name) %></p>
@@ -38,16 +38,21 @@
               <audio controls src="<%= url_for(@resource.file) %>" class="mt-2 w-100 pe-4"></audio>
             <% end %>
 
-            <% if @resource.file.present? %>
-              <%= link_to rails_blob_path(@resource.file, disposition: "attachment") do %>
-                <button type="button" class="btn btn-success mt-3">Télécharger</button>
+            <div class="mt-2">
+              <% if @resource.file.present? %>
+                <%= link_to rails_blob_path(@resource.file, disposition: "attachment"), class: 'btn btn-success mt-2 me-1' do %>
+                  <i class="fas fa-download"> Télécharger</i>
+                <% end %>
               <% end %>
-            <% end %>
-            <% if current_user && current_user.admin? %>
-              <%= link_to edit_admin_resource_path(@resource), class: 'btn btn-warning mt-3 ms-1' do %>
-                <i class="fas fa-pencil-alt"> Modifier</i>
+              <%= link_to qrcode_path(slug: @resource.slug, format: :png), class: 'btn btn-info mt-2 me-1 d-none d-sm-inline-block' do %>
+                <i class="fas fa-qrcode"> QR</i>
               <% end %>
-            <% end %>
+              <% if current_user && current_user.admin? %>
+                <%= link_to edit_admin_resource_path(@resource), class: 'btn btn-warning mt-2' do %>
+                  <i class="fas fa-pencil-alt"> Modifier</i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

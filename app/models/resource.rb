@@ -59,4 +59,14 @@ class Resource < ApplicationRecord
     format_code = format.try(:code)||'XXX'
     "#{projet_code}-#{category_code}-#{format_code}-#{code_language.upcase}-#{code_number}-#{version_formatted}-#{label.slug}"
   end
+
+  def qrcode_slug
+    projet_code = projet.try(:code) || 'XX'
+    category_code = category.try(:code) || 'XXX'
+    "#{projet_code}-#{category_code}-QRC-#{code_language.upcase}-#{code_number}-#{version_formatted}-#{label.slug}"
+  end
+
+  def qrcode_filename
+    "#{qrcode_slug}.png"
+  end
 end

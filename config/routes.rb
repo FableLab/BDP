@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
   resources :resources, only: [:index]
   resources :resources, only: [:show], param: :slug
+  resources :qrcodes, only: [:show], param: :slug
+  resources :qrcodes, only: [:index]
 end

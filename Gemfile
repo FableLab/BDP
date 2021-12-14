@@ -26,6 +26,8 @@ gem 'pagy', '~> 5.1', '>= 5.1.3'
 gem 'language_list', '~> 1.2', '>= 1.2.1'
 gem 'active_storage_validations', '~> 0.9.6'
 gem 'attribute-defaults'
+gem 'rqrcode', '~> 0.10.1'
+gem 'rubyzip', '~> 2.3', '>= 2.3.2', require: 'zip'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
