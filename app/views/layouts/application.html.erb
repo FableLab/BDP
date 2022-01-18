@@ -16,5 +16,9 @@
     <div class="container">
       <%= yield %>
     </div>
+
+    <% if Rails.env.production? %>
+      <script defer data-domain="bdp.fable-lab.com" src="http://plausible.fable-lab.com/js/plausible.js"></script>
+    <% end %>
   </body>
 </html>
